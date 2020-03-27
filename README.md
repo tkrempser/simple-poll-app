@@ -1,2 +1,2 @@
 # simple-poll-app
-Simple poll app tutorial from Django's official docs.
+This app was built following the tutorial available at https://docs.djangoproject.com/en/3.0/intro/tutorial01/.
