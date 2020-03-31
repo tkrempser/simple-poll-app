@@ -1,7 +1,8 @@
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
 
-from .models import Question
+from .models import Choice, Question
 
 
 def index(request):
@@ -28,9 +29,10 @@ def vote(request, question_id):
     try:
         selected_choice = question.choice_set.get(id=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
-        # Redisplay the question for voting
+        # Redisplay the question voting form.
         return render(request, 'polls/detail.html', {
-            'error_mesage': "You didn't select a choice."
+            'question': question,
+            'error_message': "You didn't select a choice.",
         })
     else:
         selected_choice.votes += 1
